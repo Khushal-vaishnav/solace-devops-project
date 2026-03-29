@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solace-consumer
+  namespace: solace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solace-consumer
+  template:
+    metadata:
+      labels:
+        app: solace-consumer
+    spec:
+      containers:
+      - name: consumer
+        image: ghcr.io/khushal-vaishnav/solace-consumer:0.1
+
+        ports:
+        - containerPort: 4444
+
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 4444
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: 4444
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+
+        envFrom:
+        - configMapRef:
+            name: solace-app-config
+        - secretRef:
+            name: solace-app-secret

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-solace
+  namespace: monitoring
+data:
+  solace-pubsub-metrics.json: |-
+    {
+      "title": "solace",
+      "panels": []
+    }

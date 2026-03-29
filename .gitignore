@@ -1,0 +1,50 @@
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Logs / temp
+# =========================
+*.log
+*.tmp
+*.swp
+
+# =========================
+# Binaries / archives (IMPORTANT for your case)
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.jar
+*.exe
+*.out
+
+# =========================
+# Go build files
+# =========================
+bin/
+*.test
+
+# =========================
+# Terraform (CRITICAL)
+# =========================
+**/.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# =========================
+# Kubernetes local testing
+# =========================
+k8s-local/
+
+# =========================
+# Sensitive / configs (optional)
+# =========================
+.env
+*.pem
+*.key
