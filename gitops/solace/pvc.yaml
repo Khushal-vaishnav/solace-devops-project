@@ -4,7 +4,7 @@ metadata:
   name: solace-dc-pvc
   namespace: solace
 spec:
-  storageClassName: "gp2"
+  storageClassName: "gp3"
   accessModes:
     - ReadWriteOnce
   resources:

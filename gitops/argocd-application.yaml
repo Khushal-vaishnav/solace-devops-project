@@ -3,13 +3,14 @@ kind: Application
 metadata:
   name: solace-app
   namespace: argocd
+
 spec:
   project: default
 
   source:
-    repoURL: https://github.com/Khushal-vaishnav/solacepubsub-go.git
+    repoURL: https://github.com/Khushal-vaishnav/solace-devops-project.git
     targetRevision: main
-    path: solace-gitops/solace   # ✅ THIS MATCHES YOUR TREE
+    path: gitops/solace
 
   destination:
     server: https://kubernetes.default.svc
@@ -21,4 +22,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
