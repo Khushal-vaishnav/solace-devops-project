@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: solacedr
+  namespace: solace
+spec:
+  serviceName: solacedr
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solacedr
+  template:
+    metadata:
+      labels:
+        app: solacedr
+    spec:
+      containers:
+      - name: solace
+        image: solace/solace-pubsub-standard:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 55555
+        - containerPort: 2222
+        - containerPort: 1943
+        env:
+        - name: username_admin_globalaccesslevel
+          value: "admin"
+        - name: username_admin_password
+          value: "admin"
+        volumeMounts:
+        - name: solace-storage
+          mountPath: /var/lib/solace
+  volumeClaimTemplates:
+  - metadata:
+      name: solace-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: gp3
+      resources:
+        requests:
+          storage: 10Gi
