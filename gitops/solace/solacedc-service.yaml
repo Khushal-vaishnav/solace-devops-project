@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: solacedc
   namespace: solace
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 spec:
   type: LoadBalancer
   selector:
@@ -11,19 +13,12 @@ spec:
     - name: web
       port: 8080
       targetPort: 8080
-      protocol: TCP
-
     - name: smf
       port: 55555
       targetPort: 55555
-      protocol: TCP
-
     - name: ssh
       port: 2222
       targetPort: 2222
-      protocol: TCP
-
     - name: ssl
       port: 1943
       targetPort: 1943
-      protocol: TCP
